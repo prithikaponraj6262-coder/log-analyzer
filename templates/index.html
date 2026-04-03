@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Analyzer</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #22c55e;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .alert {
+            color: red;
+        }
+
+        .warning {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🔍 Log Analyzer Dashboard</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="logfile" required>
+        <br><br>
+        <button type="submit">Analyze Logs</button>
+    </form>
+
+    {% for result in results %}
+        <div class="result 
+            {% if 'ALERT' in result %}alert{% else %}warning{% endif %}">
+            {{ result }}
+        </div>
+    {% endfor %}
+
+</body>
+</html>
